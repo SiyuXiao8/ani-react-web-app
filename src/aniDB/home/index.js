@@ -1,34 +1,44 @@
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {findTop10AnimeThunk} from "../top10Anime/ani-thunk";
+import {findTop10AnimeThunk} from "./topTrendingAnime/ani-thunk";
+import {Link} from "react-router-dom";
 
-
+// in home screen we need content for login user that anonymous user can't see
+// user that's log in see contents that is specific to them
 const HomeComponent = () => {
-    const {animes, loading} = useSelector((state) => state.animeData);
+    const {animes, loading} = useSelector((state) => state.animeData)
     const dispatch = useDispatch()
-
     useEffect(() => {
         dispatch(findTop10AnimeThunk())
-    })
+        // eslint-disable-next-line
+    }, [])
 
     return(
         <>
-            <h1>Top 10 Trending Anime</h1>
+            <h1>Top Trending Anime</h1>
             {/*{console.log(animes)}*/}
-            {animes.map(a=>
-                <div className="card d-inline-block card-size me-2 mb-5">
-                    <div className="card-body">
-                        <h6 className="card-title">{a.title}</h6>
-                        <button className='btn btn-info rounded-pill float-end mb-2'>More details</button>
+            {loading &&
+                    <div className="spinner-border text-secondary" role="status">
+                    <span className="visually-hidden">Loading...</span>
                     </div>
-                    <img src={a.images.jpg.large_image_url} className="card-img-bottom img-size"
-                         alt={a.title}/>
-
-                </div>
-                )
             }
 
+            {!loading &&
+                animes.map(a=>
+                        <div key={a.mal_id} className="card d-inline-block card-size me-2 mb-5">
+                            <div  className="card-body">
+                                <h6 className="card-title">{a.title}</h6>
+                                <Link to={`/details/${a.mal_id}`}
+                                      className='btn btn-info rounded-pill float-end mb-2'>
+                                    More details
+                                </Link>
+                            </div>
+                            <img src={a.images.jpg.large_image_url} className="card-img-bottom img-size"
+                                 alt={a.title}/>
 
+                        </div>
+                )
+            }
         </>
     )
 }

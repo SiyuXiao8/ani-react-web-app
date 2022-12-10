@@ -3,7 +3,7 @@ import {findTop10AnimeThunk} from './ani-thunk';
 
 const initialState = {
     animes: [],
-    loading: false
+    loading: true
 }
 
 const animeReducer = createSlice({
@@ -11,6 +11,7 @@ const animeReducer = createSlice({
     initialState,
     extraReducers: {
         [findTop10AnimeThunk.fulfilled]: (state, action) => {
+                state.loading = false
                 state.animes = action.payload
                 // console.log(state.animes)
             }
