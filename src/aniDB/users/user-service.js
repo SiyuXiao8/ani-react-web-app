@@ -25,3 +25,23 @@ export const logout = async () => {
     const response = await api.post(`${BASE_URL}/logout`)
     return response.data
 }
+
+export const findUserById = async (id) => {
+    const response = await api.get(`${BASE_URL}/users/${id}`)
+    return response.data
+}
+
+export const findAllUsers = async () => {
+    const response = await api.get(`${BASE_URL}/users`)
+    return response.data
+}
+
+export const deleteUser = async (id) => {
+    const response = await api.delete(`${BASE_URL}/users/${id}`)
+    return response.data
+}
+
+export const updateUser = async (uid, updates) => {
+    const response = await api.put(`${BASE_URL}/users/${uid}`, updates)
+    return response.data
+}

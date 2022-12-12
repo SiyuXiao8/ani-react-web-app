@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 // user that's log in see contents that is specific to them
 const HomeComponent = () => {
     const {animes, loading} = useSelector((state) => state.animeData)
+    const {currentUser} = useSelector(state => state.userData)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(findTop10AnimeThunk())
@@ -16,7 +17,12 @@ const HomeComponent = () => {
     return(
         <>
             <h1>Top Trending Anime</h1>
-            {/*{console.log(animes)}*/}
+            {currentUser &&
+                <div className="alert alert-success" role="alert">
+                    <strong>Welcome! {currentUser.username}</strong>
+                </div>
+            }
+
             {loading &&
                     <div className="spinner-border text-secondary" role="status">
                     <span className="visually-hidden">Loading...</span>

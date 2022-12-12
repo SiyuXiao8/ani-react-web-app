@@ -14,23 +14,22 @@ const SearchAnime = () => {
     }, [])
     return(
         <>
-            <h1>Search Screen</h1>
             <div className='list-group mb-2'>
                 <div className='list-group-item rounded-pill'>
+                    <input
+                        className='form-control d-inline-block w-75 border-0'
+                        onChange={ (e) => {
+                            setSearchTerm(e.target.value)
+                        }}
+                        value={searchTerm}/>
                     <button
-                        className='btn btn-primary float-end rounded-pill'
+                        className='btn btn-primary float-end rounded-pill d-inline-block'
                         onClick={ () => {
                             dispatch(findAnimeBySearchTermThunk(searchTerm))
                         }}
                     >
                         Search
                     </button>
-                    <input
-                        className='form-control w-75'
-                        onChange={ (e) => {
-                            setSearchTerm(e.target.value)
-                        }}
-                        value={searchTerm}/>
                 </div>
             </div>
             {/*{console.log(animeSearch)}*/}

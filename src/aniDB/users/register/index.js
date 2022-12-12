@@ -7,6 +7,10 @@ const RegisterScreen = () => {
     const [username, setUsername] = useState("Username")
     const [password, setPassword] = useState('')
     const [validatePassword, setValidatePassword] = useState('')
+    const [email, setEmail] = useState('')
+    const [address, setAddress] = useState('')
+    const [firstName, setFirstname]= useState('')
+    const [lastName, setLastname]= useState('')
     const [errors, setError] = useState(null)
     // const {error} = useSelector(state => state.userData)
     const {currentUser} = useSelector(state => state.userData)
@@ -18,7 +22,15 @@ const RegisterScreen = () => {
             return
         }
         setError(null)
-        dispatch(registerThunk({username, password, role: value}))
+        dispatch(registerThunk({
+            username,
+            password,
+            role: value,
+            email,
+            address,
+            firstName,
+            lastName
+        }))
 
     }
     const handleSelect = (e) => {
@@ -41,6 +53,13 @@ const RegisterScreen = () => {
                 }
                 <div className="card-body">
                     <div className="input-group mb-3">
+                        <span className="input-group-text">First and last name</span>
+                        <input onChange={e=>setFirstname(e.target.value)}
+                            type="text" aria-label="First name" className="form-control"/>
+                            <input onChange={e=>setLastname(e.target.value)}
+                                type="text" aria-label="Last name" className="form-control"/>
+                    </div>
+                    <div className="input-group mb-3">
                         <div className="form-floating">
                             <input type="text" onChange={(e)=> setUsername(e.target.value)}
                                    className="form-control" id="floatingInputGroup1" placeholder='Username'/>
@@ -61,6 +80,20 @@ const RegisterScreen = () => {
                             <label htmlFor="floatingInputGroup3">Validate Password</label>
                         </div>
                     </div>
+                    <div className="input-group mb-3">
+                        <div className="form-floating">
+                            <input type="email" onChange={(e) => setEmail(e.target.value)}
+                                   className="form-control" id="floatingInputGroup4" placeholder="Password"/>
+                            <label htmlFor="floatingInputGroup4">Email</label>
+                        </div>
+                    </div>
+                    <div className="input-group mb-3">
+                        <div className="form-floating">
+                            <input type="text" onChange={(e) => setAddress(e.target.value)}
+                                   className="form-control" id="floatingInputGroup5" placeholder="Password"/>
+                            <label htmlFor="floatingInputGroup5">Address</label>
+                        </div>
+                    </div>
                     <div className="form-floating">
                         <select value={value} onChange={handleSelect}
                             className="form-select" id="floatingSelectGrid">
@@ -68,14 +101,14 @@ const RegisterScreen = () => {
                             <option value="SECURITY">Security</option>
                             <option value="ADMIN">Admin</option>
                         </select>
-                        <h2>You selected {value}</h2>
+
                         <label htmlFor="floatingSelectGrid">Pick your role</label>
                     </div>
                     <button onClick={handleRegisterBtn}
-                        className="btn btn-primary mt-1">Register</button>
+                        className="btn btn-primary mt-2">Register</button>
                 </div>
             </div>
-            {currentUser && <h1>Hello {currentUser.username}</h1>}
+
         </>
     )
 }

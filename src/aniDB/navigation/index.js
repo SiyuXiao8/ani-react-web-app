@@ -17,9 +17,16 @@ const NavigationSidebar = () => {
             {'type':'login','icon':<i className="fa-solid fa-user me-2"></i>},
             {'type':'register', 'icon':<i className="fa-solid fa-user-plus me-1"></i>})
     } else {// if user is logged in show profile tab
+        if(currentUser.role === 'ADMIN'){
+            screen.push({'type':'admin','icon': <i className="fa-solid fa-hammer me-2"></i>})
+        }
+        if(currentUser.role === 'SECURITY'){
+            screen.push({'type':'security','icon': <i className="fa-solid fa-shield me-2"></i>})
+        }
         screen.push(
             {'type':'favorite','icon': <i className="fa-solid fa-heart me-2"></i>},
             {'type':'profile', 'icon': <i className="fa-solid fa-id-card me-2"></i>})
+
     }
     return (
         <div className='list-group'>

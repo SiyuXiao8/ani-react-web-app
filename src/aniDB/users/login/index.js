@@ -13,7 +13,7 @@ const LoginScreen = () => {
 // users: admin - delete users, 'security guard' - deletes comments, regular user - comments
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState('')
-    const {currentUser} = useSelector(state => state.userData)
+    const {currentUser, error} = useSelector(state => state.userData)
     const dispatch = useDispatch()
 
     const handleLoginBtn = () => {
@@ -30,7 +30,11 @@ const LoginScreen = () => {
                 <div className="card-header">
                     Login
                 </div>
-
+                {error &&
+                    <div className="alert alert-danger" role="alert">
+                        {error}
+                    </div>
+                }
                 <div className="card-body">
                     <div className="input-group mb-3">
                         <div className="form-floating">

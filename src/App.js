@@ -17,13 +17,21 @@ import LoginScreen from "./aniDB/users/login";
 import ProfileScreen from "./aniDB/users/profile";
 import CurrentUser from "./aniDB/users/current-user";
 import ProtectedRoute from "./aniDB/users/protected-route";
+import reviewsReducer from "./aniDB/reviews/reviews-reducer";
+import PublicProfile from "./aniDB/users/public-profile";
+import favoriteReducer from "./aniDB/favorite/favorite-reducer";
+import Admin from "./aniDB/users/admin";
+import Security from "./aniDB/users/security";
+import EditProfile from "./aniDB/users/profile/edit-profile";
 
 
 const store = configureStore({
     reducer: {animeData: animeReducer,
               searchData: searchReducer,
               animeDetail: detailsReducer,
-              userData: userReducer}
+              userData: userReducer,
+              reviewsData: reviewsReducer,
+              favoritesData: favoriteReducer}
 });
 // maybe hide the favorite screen when user is not logged in
 function App() {
@@ -50,6 +58,10 @@ function App() {
                                     </ProtectedRoute>
                                 }/>
                                 <Route path='/details/*' element={<DetailComponent/>}/>
+                                <Route path='/profile/:id' element={<PublicProfile/>}/>
+                                <Route path='/admin' element={<Admin/>}></Route>
+                                <Route path='/security' element={<Security/>}></Route>
+                                <Route path='/edit/:uid' element={<EditProfile/>}></Route>
                             </Routes>
                         </CurrentUser>
                     </div>
