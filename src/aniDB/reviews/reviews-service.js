@@ -1,14 +1,15 @@
 import axios from "axios";
 
-const BASE_URL = 'http://localhost:4000'
-const REVIEW_URL = 'http://localhost:4000/reviews'
+// const BASE_URL = 'http://localhost:4000'
+// const REVIEW_URL = 'http://localhost:4000/reviews'
+const BASE_URL = process.env.REACT_APP_API_BASE;
 
 const api = axios.create(
     {withCredentials: true}
 )
 
 export const createReview = async (review) => {
-    const response = await api.post(`${REVIEW_URL}`, review)
+    const response = await api.post(`${BASE_URL}/reviews`, review)
     return response.data
 }
 
