@@ -12,7 +12,7 @@ const FavoriteAnime = () => {
     }, [])
     return(
         <>
-            <h3>{currentUser.username} Favorite list</h3>
+            <h3> <span className='text-info'>{currentUser.username}</span> Favorite list</h3>
             {favorites && currentUser &&
                 favorites.map(f=>
                     <div key={f._id} className="card d-inline-block me-2 mb-2 rounded-top" style={{width: '18rem'}}>

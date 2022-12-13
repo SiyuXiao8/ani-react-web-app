@@ -16,8 +16,8 @@ const Security = () => {
                 <ul className='list-group'>
                     {reviews.map(r=>
                     <li key={r._id} className='list-group-item'>
-                        <span className='fw-bold'>{r.author.username} </span>
-                        commented on <span className='fw-bold'>{r.animeName}: </span>
+                        <span className='fw-bold text-success'>{r.author.username} </span>
+                        commented on <span className='fw-bold text-info'>{r.animeName}: </span>
                         {r.review}
                         <button onClick={()=>{
                             dispatch(deleteReviewThunk(r._id))

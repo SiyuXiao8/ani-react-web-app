@@ -18,7 +18,7 @@ const HomeComponent = () => {
             {currentUser &&
                 <div className="alert alert-success" role="alert">
                     <strong>
-                        Welcome! {currentUser.username} if you are interested in any of these anime please click on More
+                        Welcome! <span className='text-info'>{currentUser.username}</span> if you are interested in any of these anime please click on More
                         details!
                     </strong>
                 </div>

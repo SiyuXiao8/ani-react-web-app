@@ -36,10 +36,10 @@ const PublicProfile = () => {
                 </div>
             }
             {favorites &&
-                <ul className='list-group'>
-                    <h3>Favorite list: </h3>
+                <ul className='list-group' style={{width: '40%'}}>
+                    <h3 className='text-light'>Favorite list: </h3>
                     {favorites.map(f=>
-                        <li key={f._id} className='list-group-item w-25'>
+                        <li key={f._id} className='list-group-item'>
                             <Link
                                   to={`/details/${f.animeID}`}>
                                 {f.animeName}
@@ -49,8 +49,8 @@ const PublicProfile = () => {
                 </ul>
             }
             {reviews &&
-                <ul className='list-group'>
-                    <h3>Comment written:</h3>
+                <ul className='list-group mt-2'>
+                    <h3 className='text-light'>Comment written:</h3>
                     {reviews.map(r =>
                         <li key={r._id} className='list-group-item'>
                             {r.review}

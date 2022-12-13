@@ -22,7 +22,7 @@ const ProfileScreen = () => {
             {currentUser &&
                     <div>
                         <div className="alert alert-success alert-dismissible" role="alert">
-                            <strong>Welcome! {currentUser.username}</strong>
+                            <strong>Welcome! <span className='text-info'>{currentUser.username}</span></strong>
                         </div>
                         <div className="mb-3 row">
                             <label htmlFor="static1" className="col-sm-2 col-form-label">Full name:</label>
