@@ -54,7 +54,7 @@ const DetailComponent = () => {
             {!loading && <>
                 <div className='row'>
                     <div className='col-5'>
-                        <div className="card d-inline-block" style={{width: '18rem'}}>
+                        <div className="card d-inline-block rounded-top" style={{width: '18rem'}}>
                             <img src={anime.images.webp.large_image_url} className="card-img-top" alt=""/>
                             <div className="card-body">
                                 <h5 className="card-title">{anime.title}</h5>
@@ -71,7 +71,7 @@ const DetailComponent = () => {
                                         setShow(true)
                                     }
                                 }}
-                                            className="btn btn-primary">
+                                            className="btn btn-danger mt-2">
                                         Add to Favorite
                                 </button>
                                 {/*Trailer button*/}
@@ -79,7 +79,7 @@ const DetailComponent = () => {
                                     // eslint-disable-next-line
                                     <a href={anime.trailer.embed_url}
                                         // eslint-disable-next-line
-                                       className="btn btn-primary ms-2" target="_blank" rel="noreferrer">
+                                       className="btn btn-success ms-2 mt-2" target="_blank" rel="noreferrer">
                                         Trailer
                                     </a>
                                 }
@@ -118,7 +118,7 @@ const DetailComponent = () => {
                 {/*list of user's comments*/}
                 {reviews.length !== 0 && reviews &&
                     <ul className='list-group mt-2'>
-                        <div>Comment Section:</div>
+                        <div className='text-light'>Comment Section:</div>
                         {reviews.map(
                             r => <li key={r._id} className='list-group-item'>
                                 {r.review}

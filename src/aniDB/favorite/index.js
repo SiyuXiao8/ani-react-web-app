@@ -15,7 +15,7 @@ const FavoriteAnime = () => {
             <h3>{currentUser.username} Favorite list</h3>
             {favorites && currentUser &&
                 favorites.map(f=>
-                    <div key={f._id} className="card d-inline-block me-2 mb-2" style={{width: '18rem'}}>
+                    <div key={f._id} className="card d-inline-block me-2 mb-2 rounded-top" style={{width: '18rem'}}>
                         <img src={f.animeImage} className="card-img-top" alt={f.animeName}/>
                         <div  className="card-body">
                             <h5 className="card-title">{f.animeName}</h5>

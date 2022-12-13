@@ -3,6 +3,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import {Link} from "react-router-dom";
 import {useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
+import {Dropdown, DropdownButton} from "react-bootstrap";
 
 const NavigationSidebar = () => {
     const {pathname} = useLocation();
@@ -28,15 +29,34 @@ const NavigationSidebar = () => {
             {'type':'profile', 'icon': <i className="fa-solid fa-id-card me-2"></i>})
     }
     return (
-        <div className='list-group'>
-            {screen.map(screen =>
-                <Link key={screen.type} to={`/${screen.type}`}
-                      className={`list-group-item rounded-pill ${parts[1] === `${screen.type}` ? 'active': ''}`}>
-                    {screen.icon}
-                    <span className='text-capitalize'>{screen.type}</span>
-                </Link>
-            )}
-        </div>
+        <>
+
+            <div className='list-group d-none d-sm-flex'>
+                {screen.map(screen =>
+                    <Link key={screen.type} to={`/${screen.type}`}
+                          className={`list-group-item rounded-pill ${parts[1] === `${screen.type}` ? 'active': ''}`}>
+                        {screen.icon}
+                        <span className='text-capitalize'>{screen.type}</span>
+                    </Link>
+                )}
+            </div>
+
+            <div className='d-sm-none me-0'>
+                <DropdownButton id='dropdown-basic-button' title='Menu'>
+                    <div className='list-group'>
+                        {screen.map(screen =>
+                            <Dropdown.Item>
+                                <Link key={screen.type} to={`/${screen.type}`}
+                                      className={`list-group-item rounded-pill ${parts[1] === `${screen.type}` ? 'active': ''}`}>
+                                    {screen.icon}
+                                    <span className='text-capitalize'>{screen.type}</span>
+                                </Link>
+                            </Dropdown.Item>
+                        )}
+                    </div>
+                </DropdownButton>
+            </div>
+        </>
     )
 }
 

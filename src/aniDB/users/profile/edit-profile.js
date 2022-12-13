@@ -16,7 +16,7 @@ const EditProfile = () => {
 
     return(
         <>
-            <h1>edit profile screen</h1>
+            <h1>Edit profile</h1>
             <div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
@@ -57,7 +57,7 @@ const EditProfile = () => {
                     // dispatch(logoutThunk())
                     navigate('/login')
                 }}
-                    className="btn btn-primary">
+                    className="btn btn-success">
                     Submit
                 </button>
             </div>

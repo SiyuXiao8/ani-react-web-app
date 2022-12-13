@@ -41,7 +41,7 @@ const SearchAnime = () => {
 
             {!loading &&
                 animeSearch.map(a=>
-                    <div key={a.mal_id} className="card d-inline-block card-size me-2 mb-5">
+                    <div key={a.mal_id} className="card d-inline-block card-size me-2 mb-5 rounded-bottom" style={{height: 'auto'}}>
                         <div className="card-body">
                             <h6 className="card-title">{a.title}</h6>
                             <Link to={`/details/${a.mal_id}`}
