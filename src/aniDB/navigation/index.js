@@ -16,7 +16,7 @@ const NavigationSidebar = () => {
         screen.push(
             {'type':'login','icon':<i className="fa-solid fa-user me-2"></i>},
             {'type':'register', 'icon':<i className="fa-solid fa-user-plus me-1"></i>})
-    } else {// if user is logged in show profile tab
+    } else {// if user is logged in
         if(currentUser.role === 'ADMIN'){
             screen.push({'type':'admin','icon': <i className="fa-solid fa-hammer me-2"></i>})
         }
@@ -26,7 +26,6 @@ const NavigationSidebar = () => {
         screen.push(
             {'type':'favorite','icon': <i className="fa-solid fa-heart me-2"></i>},
             {'type':'profile', 'icon': <i className="fa-solid fa-id-card me-2"></i>})
-
     }
     return (
         <div className='list-group'>
@@ -37,7 +36,6 @@ const NavigationSidebar = () => {
                     <span className='text-capitalize'>{screen.type}</span>
                 </Link>
             )}
-            
         </div>
     )
 }

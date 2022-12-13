@@ -3,8 +3,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {findTop10AnimeThunk} from "./topTrendingAnime/ani-thunk";
 import {Link} from "react-router-dom";
 
-// in home screen we need content for login user that anonymous user can't see
-// user that's log in see contents that is specific to them
 const HomeComponent = () => {
     const {animes, loading} = useSelector((state) => state.animeData)
     const {currentUser} = useSelector(state => state.userData)
@@ -19,7 +17,10 @@ const HomeComponent = () => {
             <h1>Top Trending Anime</h1>
             {currentUser &&
                 <div className="alert alert-success" role="alert">
-                    <strong>Welcome! {currentUser.username}</strong>
+                    <strong>
+                        Welcome! {currentUser.username} if you are interested in any of these anime please click on More
+                        details!
+                    </strong>
                 </div>
             }
 
@@ -41,7 +42,6 @@ const HomeComponent = () => {
                             </div>
                             <img src={a.images.jpg.large_image_url} className="card-img-bottom img-size"
                                  alt={a.title}/>
-
                         </div>
                 )
             }

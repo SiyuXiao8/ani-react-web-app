@@ -32,7 +32,7 @@ const SearchAnime = () => {
                     </button>
                 </div>
             </div>
-            {/*{console.log(animeSearch)}*/}
+
             {loading &&
                         <div className="spinner-border text-secondary" role="status">
                         <span className="visually-hidden">Loading...</span>
@@ -54,6 +54,7 @@ const SearchAnime = () => {
                              alt={a.title}/>
                     </div>
             )}
+            {/* no results found */}
             {!loading && animeSearch.length===0 &&
                         <div className="alert alert-danger" role="alert">
                             Sorry, please try again with other search term!

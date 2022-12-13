@@ -13,7 +13,6 @@ const animeReducer = createSlice({
         [findTop10AnimeThunk.fulfilled]: (state, action) => {
                 state.loading = false
                 state.animes = action.payload
-                // console.log(state.animes)
             }
     }
 })

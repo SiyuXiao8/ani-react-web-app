@@ -14,6 +14,7 @@ const ProfileScreen = () => {
     }
     useEffect(()=>{
         dispatch(profileThunk())
+        // eslint-disable-next-line
     },[])
     return(
         <>

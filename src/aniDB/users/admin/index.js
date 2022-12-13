@@ -4,7 +4,6 @@ import {deleteUserThunk, findAllUsersThunk} from "../user-thunk";
 import {deleteLikeByUserThunk} from "../../favorite/favorite-thunk";
 import {deleteReviewByUserThunk} from "../../reviews/reviews-thunk";
 
-
 const Admin = () => {
     const {users, currentUser} = useSelector(state => state.userData)
     const dispatch = useDispatch()

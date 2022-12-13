@@ -5,12 +5,6 @@ import {Navigate} from "react-router";
 
 
 const LoginScreen = () => {
-// profile screen should show everything they commented on or liked
-// should hide some info if other people are visiting the profile
-// check the user
-// should have link that take them back to the details page where they commented on
-// like: Bob liked Bleach: Seennen Kenssen-hen -> this should be a link that can be clicked
-// users: admin - delete users, 'security guard' - deletes comments, regular user - comments
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState('')
     const {currentUser, error} = useSelector(state => state.userData)
@@ -24,7 +18,6 @@ const LoginScreen = () => {
         return (<Navigate to='/profile'/>)
     }
     return(
-
         <>
             <div className="card text-center">
                 <div className="card-header">

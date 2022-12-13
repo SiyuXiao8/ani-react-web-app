@@ -33,7 +33,7 @@ const store = configureStore({
               reviewsData: reviewsReducer,
               favoritesData: favoriteReducer}
 });
-// maybe hide the favorite screen when user is not logged in
+
 function App() {
   return (
       <div className='container mt-3'>

@@ -4,9 +4,7 @@ import {useEffect, useState} from "react";
 import {findAnimeByIdThunk} from "./details-thunk";
 import {createReviewThunk, findReviewByAnimeThunk} from "../reviews/reviews-thunk";
 import {createLikeThunk, findLikeByAnimeThunk} from "../favorite/favorite-thunk";
-
-
-// anonymous user can click on reviewer's name and take them to the reviewer's profile
+import Alert from 'react-bootstrap/Alert';
 
 const DetailComponent = () => {
     const {pathname} = useLocation()
@@ -40,10 +38,19 @@ const DetailComponent = () => {
             animeImage: anime.images.webp.large_image_url
         }))
     }
+    const [show, setShow] = useState(false)
+    if (show) {
+        return (
+            <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+                <Alert.Heading>Warning!!!</Alert.Heading>
+                <p>
+                    You need to login or register in order to use that feature!
+                </p>
+            </Alert>
+        );
+    }
     return(
         <>
-            {/*{console.log(anime)}*/}
-
             {!loading && <>
                 <div className='row'>
                     <div className='col-5'>
@@ -57,12 +64,17 @@ const DetailComponent = () => {
                                     <li className="list-group-item">Score By: {anime.scored_by} people</li>
                                     <li className="list-group-item">Rating: {anime.rating}</li>
                                 </ul>
-                                {currentUser &&
-                                    <button onClick={handleFavoriteBtn}
+                                <button onClick={()=>{
+                                    if (currentUser) {
+                                        handleFavoriteBtn()
+                                    } else {
+                                        setShow(true)
+                                    }
+                                }}
                                             className="btn btn-primary">
                                         Add to Favorite
-                                    </button>
-                                }
+                                </button>
+                                {/*Trailer button*/}
                                 {anime.trailer.embed_url &&
                                     // eslint-disable-next-line
                                     <a href={anime.trailer.embed_url}
@@ -74,6 +86,7 @@ const DetailComponent = () => {
                             </div>
                         </div>
                     </div>
+                    {/*favorite list*/}
                     <div className='col-auto'>
                             {favorites.length !== 0 &&
                                 <ul className='list-group'>
@@ -89,20 +102,7 @@ const DetailComponent = () => {
                             }
                     </div>
                 </div>
-                {/*{anime.trailer.embed_url &&*/}
-                {/*    <div className="video-responsive d-inline-block ms-3">*/}
-                {/*        <h5>Check out this trailer: </h5>*/}
-                {/*        <iframe*/}
-                {/*            width="500"*/}
-                {/*            height="650"*/}
-                {/*            src={anime.trailer.embed_url}*/}
-                {/*            frameBorder="0"*/}
-                {/*            allow="accelerometer; clipboard-write;*/}
-                {/*                encrypted-media; gyroscope; picture-in-picture"*/}
-                {/*            allowFullScreen*/}
-                {/*            title="Embedded youtube"*/}
-                {/*        />*/}
-                {/*    </div>}*/}
+                {/*display comment area when user is logged in*/}
                 {currentUser &&
                     <>
                         <div className="form-floating mt-3">
@@ -115,8 +115,7 @@ const DetailComponent = () => {
                         </div>
                     </>
                 }
-
-
+                {/*list of user's comments*/}
                 {reviews.length !== 0 && reviews &&
                     <ul className='list-group mt-2'>
                         <div>Comment Section:</div>
