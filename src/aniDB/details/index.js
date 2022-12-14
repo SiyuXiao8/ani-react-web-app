@@ -2,9 +2,10 @@ import {Link, useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {findAnimeByIdThunk} from "./details-thunk";
-import {createReviewThunk, findReviewByAnimeThunk} from "../reviews/reviews-thunk";
+import {createReviewThunk, deleteReviewThunk, findReviewByAnimeThunk} from "../reviews/reviews-thunk";
 import {createLikeThunk, findLikeByAnimeThunk} from "../favorite/favorite-thunk";
 import Alert from 'react-bootstrap/Alert';
+import '../reviews/index.css';
 
 const DetailComponent = () => {
     const {pathname} = useLocation()
@@ -16,6 +17,7 @@ const DetailComponent = () => {
     const {reviews} = useSelector(state => state.reviewsData)
     const {favorites} = useSelector(state => state.favoritesData)
     const dispatch = useDispatch()
+
     useEffect( () => {
         dispatch(findAnimeByIdThunk(animeID))
         dispatch(findReviewByAnimeThunk(animeID))
@@ -29,7 +31,6 @@ const DetailComponent = () => {
             anime: animeID,
             animeName: anime.title
         }))
-
     }
     const handleFavoriteBtn = () => {
         dispatch(createLikeThunk({
@@ -67,6 +68,7 @@ const DetailComponent = () => {
                                 <button onClick={()=>{
                                     if (currentUser) {
                                         handleFavoriteBtn()
+                                        dispatch(findLikeByAnimeThunk(animeID))
                                     } else {
                                         setShow(true)
                                     }
@@ -92,9 +94,12 @@ const DetailComponent = () => {
                                 <ul className='list-group'>
                                     <li className='list-group-item'>Users that added current anime to their list: </li>
                                     {favorites.map(f =>
-                                        <li key={f._id} className='list-group-item '>
+                                        <li key={f._id} className='list-group-item'>
                                             <Link to={`/profile/${f.user._id}`}>
-                                                {f.user.username}
+                                                <span className='text-info'>
+                                                    <i className="fa-regular fa-id-card me-2"></i>
+                                                    {f.user.username}
+                                                </span>
                                             </Link>
                                         </li>
                                     )}
@@ -110,8 +115,13 @@ const DetailComponent = () => {
                                   className="form-control" placeholder="Leave a comment here"
                                   id="floatingTextarea"></textarea>
                             <label htmlFor="floatingTextarea">Comment</label>
-                            <button onClick={handlePostBtn}
-                                    className='btn btn-primary mt-1'>Post Comment</button>
+                            <button onClick={()=> {
+                                if(review) {
+                                    handlePostBtn()
+                                    dispatch(findReviewByAnimeThunk(animeID))
+                                }
+                            }}
+                                    className='btn btn-success mt-1'>Post Comment</button>
                         </div>
                     </>
                 }
@@ -122,8 +132,19 @@ const DetailComponent = () => {
                         {reviews.map(
                             r => <li key={r._id} className='list-group-item'>
                                 {r.review}
+                                {currentUser && currentUser._id === r.author._id &&
+                                    <span onClick={() => {
+                                        dispatch(deleteReviewThunk(r._id))
+                                    }
+                                    }>
+                                        <i className="fa-solid fa-delete-left float-end ms-2 text-danger delete-comment"></i>
+                                    </span>
+                                }
                                 <Link className='float-end' to={`/profile/${r.author._id}`}>
-                                    - {r.author.username}
+                                    <span className='text-info'>
+                                        <i className="fa-regular fa-id-card me-2"></i>
+                                        {r.author.username}
+                                    </span>
                                 </Link>
                             </li>
                         )}

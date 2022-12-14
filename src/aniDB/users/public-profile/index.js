@@ -42,7 +42,10 @@ const PublicProfile = () => {
                         <li key={f._id} className='list-group-item'>
                             <Link
                                   to={`/details/${f.animeID}`}>
-                                {f.animeName}
+                                <span className='text-info'>
+                                    <i className="fa-solid fa-film me-2"></i>
+                                    {f.animeName}
+                                </span>
                             </Link>
                         </li>
                     )}
@@ -56,7 +59,10 @@ const PublicProfile = () => {
                             {r.review}
                             <Link className='float-end'
                                 to={`/details/${r.anime}`}>
-                                {r.animeName}
+                                <span className='text-info'>
+                                    <i className="fa-solid fa-film me-2"></i>
+                                    {r.animeName}
+                                </span>
                             </Link>
                         </li>
                     )}

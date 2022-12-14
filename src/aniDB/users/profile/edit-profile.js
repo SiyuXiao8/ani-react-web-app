@@ -3,6 +3,7 @@ import {useSelector} from "react-redux";
 import {useState} from "react";
 // import {logoutThunk, updateUserThunk} from "../user-thunk";
 import {updateUser} from "../user-service";
+import Alert from 'react-bootstrap/Alert';
 
 const EditProfile = () => {
     const {uid} = useParams()
@@ -13,7 +14,17 @@ const EditProfile = () => {
     const [address, setAddress] = useState('')
     const [first, setFirst] = useState('')
     const [last, setLast] = useState('')
-
+    const [show, setShow] = useState(false)
+    if (show) {
+        return (
+            <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+                <Alert.Heading>Warning!!!</Alert.Heading>
+                <p>
+                    Do not leave any fields empty!
+                </p>
+            </Alert>
+        );
+    }
     return(
         <>
             <h1>Edit profile</h1>
@@ -44,18 +55,22 @@ const EditProfile = () => {
                 </div>
 
                 <button onClick={()=>{
-
-                    const updates = {
-                        email,
-                        address,
-                        firstName: first,
-                        lastName: last
+                    if(email && address && first && last) {
+                        const updates = {
+                            email,
+                            address,
+                            firstName: first,
+                            lastName: last
+                        }
+                        // console.log(updates)
+                        // dispatch(updateUserThunk(uid, updates))
+                        updateUser(uid, updates) //works
+                        // dispatch(logoutThunk())
+                        navigate('/login')
+                    } else {
+                        setShow(true)
                     }
-                    // console.log(updates)
-                    // dispatch(updateUserThunk(uid, updates))
-                    updateUser(uid, updates) //works
-                    // dispatch(logoutThunk())
-                    navigate('/login')
+
                 }}
                     className="btn btn-success">
                     Submit

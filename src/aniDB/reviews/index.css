@@ -1,0 +1,7 @@
+.delete-comment{
+    transition: all .2s ease-in-out;
+}
+
+.delete-comment:hover {
+    transform: scale(1.5);
+}

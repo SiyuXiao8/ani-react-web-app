@@ -33,7 +33,7 @@ const NavigationSidebar = () => {
 
             <div className='list-group d-none d-sm-flex'>
                 {screen.map(screen =>
-                    <Link key={screen.type} to={`/${screen.type}`}
+                    <Link key={`${screen.type}/first`} to={`/${screen.type}`}
                           className={`list-group-item rounded-pill ${parts[1] === `${screen.type}` ? 'active': ''}`}>
                         {screen.icon}
                         <span className='text-capitalize'>{screen.type}</span>
@@ -46,7 +46,7 @@ const NavigationSidebar = () => {
                     <div className='list-group'>
                         {screen.map(screen =>
                             <Dropdown.Item>
-                                <Link key={screen.type} to={`/${screen.type}`}
+                                <Link key={`${screen.type}second`} to={`/${screen.type}`}
                                       className={`list-group-item rounded-pill ${parts[1] === `${screen.type}` ? 'active': ''}`}>
                                     {screen.icon}
                                     <span className='text-capitalize'>{screen.type}</span>
