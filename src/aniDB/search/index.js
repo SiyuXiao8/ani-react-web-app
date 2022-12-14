@@ -14,7 +14,7 @@ const SearchAnime = () => {
     }, [])
     return(
         <>
-            <div className='list-group mb-2'>
+            <div className='list-group mb-3'>
                 <div className='list-group-item rounded-pill'>
                     <input
                         className='form-control d-inline-block w-75 border-0'
@@ -41,9 +41,13 @@ const SearchAnime = () => {
 
             {!loading &&
                 animeSearch.map(a=>
-                    <div key={a.mal_id} className="card d-inline-block card-size me-2 mb-5 rounded-bottom" style={{height: 'auto'}}>
+                    <div key={a.mal_id} className="card d-inline-block card-size me-3 mb-5 rounded-bottom" style={{height: 'auto'}}>
                         <div className="card-body">
-                            <h6 className="card-title">{a.title}</h6>
+                            <h6 className="card-title">
+                                {a.title.length > 25 ?
+                                    (`${a.title.substring(0, 25)}...`) : (a.title)
+                                }
+                            </h6>
                             <Link to={`/details/${a.mal_id}`}
                                 className='btn btn-info rounded-pill float-end mb-2'
                                 >

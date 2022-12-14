@@ -32,10 +32,12 @@ const HomeComponent = () => {
 
             {!loading &&
                 animes.map(a=>
-                        <div key={a.mal_id} className="card d-inline-block card-size me-2 mb-5 rounded-bottom" style={{height: 'auto'}}>
+                        <div key={a.mal_id} className="card d-inline-block card-size me-3 mb-5 rounded-bottom" style={{height: 'auto'}}>
                             <div  className="card-body">
                                 <h6 className="card-title">
-                                    {a.title}
+                                    {a.title.length > 25 ?
+                                        (`${a.title.substring(0, 25)}...`) : (a.title)
+                                    }
                                 </h6>
                                 <Link to={`/details/${a.mal_id}`}
                                       className='btn btn-info rounded-pill float-end mb-2'>

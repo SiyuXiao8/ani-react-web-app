@@ -15,10 +15,15 @@ const FavoriteAnime = () => {
             <h3> <span className='text-info'>{currentUser.username}</span> Favorite list</h3>
             {favorites && currentUser &&
                 favorites.map(f=>
-                    <div key={f._id} className="card d-inline-block me-2 mb-2 rounded-top" style={{width: '18rem'}}>
+                    <div key={f._id} className="card d-inline-block me-3 mb-2 rounded-top" style={{width: '18rem'}}>
                         <img src={f.animeImage} className="card-img-top" alt={f.animeName}/>
                         <div  className="card-body">
-                            <h5 className="card-title">{f.animeName}</h5>
+                            <h5 className="card-title">
+                                {}
+                                {f.animeName.length > 25 ?
+                                    (`${f.animeName.substring(0, 25)}...`) : (f.animeName)
+                                }
+                            </h5>
                             <button onClick={()=>{
                                 dispatch(deleteLikeThunk(f._id))
                             }} className="btn btn-danger ">Remove</button>
