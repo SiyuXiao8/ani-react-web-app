@@ -5,7 +5,7 @@ This is an Anime full stack web application. Built using the MERN (Mongodb, Expr
               Search for an Anime, and select roles when registering for a account. Admin can delete other users that would result in the 
               removal of the likes and comments that is associated with that particular user, Security can delete other user's comment.
               
-You can check out the Backend code here: https://github.com/SiyuXiao8/tuiter-node-server-app 
+You can check out the Backend code here: https://github.com/SiyuXiao8/ani-node-server-app
 
 To run the application you need to clone and run both the react and node github repo.
 
