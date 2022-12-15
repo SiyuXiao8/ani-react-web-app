@@ -1,5 +1,5 @@
 # Introduction
-This is an Anime full stack web application. Built using the MERN (Mongodb, Express.js, React.js, Node.js) stack.
+This is an Anime full stack web application. Built using the MERN (Mongodb, Express.js, React.js, Node.js) stack.\
 You can check out the Backend code here: https://github.com/SiyuXiao8/tuiter-node-server-app 
 
 # Getting Started with Create React App
