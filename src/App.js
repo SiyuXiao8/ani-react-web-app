@@ -24,7 +24,6 @@ import Admin from "./aniDB/users/admin";
 import Security from "./aniDB/users/security";
 import EditProfile from "./aniDB/users/profile/edit-profile";
 
-
 const store = configureStore({
     reducer: {animeData: animeReducer,
               searchData: searchReducer,

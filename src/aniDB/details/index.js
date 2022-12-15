@@ -31,6 +31,8 @@ const DetailComponent = () => {
             anime: animeID,
             animeName: anime.title
         }))
+        // dispatch(findReviewByAnimeThunk(animeID))
+        // setTimeout(dispatch(findReviewByAnimeThunk(animeID)),100)
     }
     const handleFavoriteBtn = () => {
         dispatch(createLikeThunk({
@@ -68,7 +70,8 @@ const DetailComponent = () => {
                                 <button onClick={()=>{
                                     if (currentUser) {
                                         handleFavoriteBtn()
-                                        dispatch(findLikeByAnimeThunk(animeID))
+                                        // dispatch(findLikeByAnimeThunk(animeID))
+                                        window.location.reload();
                                     } else {
                                         setShow(true)
                                     }
@@ -118,7 +121,8 @@ const DetailComponent = () => {
                             <button onClick={()=> {
                                 if(review) {
                                     handlePostBtn()
-                                    dispatch(findReviewByAnimeThunk(animeID))
+                                    // dispatch(findReviewByAnimeThunk(animeID))
+                                    window.location.reload();
                                 }
                             }}
                                     className='btn btn-success mt-1'>Post Comment</button>
@@ -126,12 +130,13 @@ const DetailComponent = () => {
                     </>
                 }
                 {/*list of user's comments*/}
-                {reviews.length !== 0 && reviews &&
+                {reviews.length !== 0 &&
                     <ul className='list-group mt-2'>
-                        <div className='text-light'>Comment Section:</div>
+                        <li className='text-light'>Comment Section:</li>
                         {reviews.map(
                             r => <li key={r._id} className='list-group-item'>
                                 {r.review}
+                                {/*when current user is the one who made the comment show the delete button*/}
                                 {currentUser && currentUser._id === r.author._id &&
                                     <span onClick={() => {
                                         dispatch(deleteReviewThunk(r._id))

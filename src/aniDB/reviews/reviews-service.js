@@ -1,8 +1,8 @@
 import axios from "axios";
 
-// const BASE_URL = 'http://localhost:4000'
+const BASE_URL = 'http://localhost:4000'
 // const REVIEW_URL = 'http://localhost:4000/reviews'
-const BASE_URL = process.env.REACT_APP_API_BASE;
+// const BASE_URL = process.env.REACT_APP_API_BASE;
 
 const api = axios.create(
     {withCredentials: true}
