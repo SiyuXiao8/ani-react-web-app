@@ -1,5 +1,5 @@
 # Introduction
-
+This is an Anime full stack web application. Built using the MERN (Mongodb, Express.js, React.js, Node.js) stack.
 
 # Getting Started with Create React App
 
