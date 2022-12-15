@@ -1,8 +1,10 @@
 # Introduction
 This is an Anime full stack web application. Built using the MERN (Mongodb, Express.js, React.js, Node.js) stack.\
+
     Features: Register, Login, like an anime, comment on a specific Anime, check other user's public profile, edit profile information,\
               Search for an Anime, and select roles when registering for a account. Admin can delete other users that would result in the removal of the\
               likes and comments that is associated with that particular user, Security can delete other user's comment.
+              
 You can check out the Backend code here: https://github.com/SiyuXiao8/tuiter-node-server-app 
 
 # Getting Started with Create React App
